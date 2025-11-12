@@ -1,0 +1,7 @@
+__pycache__
+pretrained/
+export/*
+generate/*
+application/build/
+application/generate/
+pulpdemo*
