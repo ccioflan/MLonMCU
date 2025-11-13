@@ -306,15 +306,15 @@ def main():
 
     audio_processor = DatasetCreator(environment_parameters, training_parameters, preprocessing_parameters)
     # TODO: Functional dataset management
-    print ("Created audio_processor")
+    # print ("Created audio_processor")
     global mdataset
-    print ("Imported mdataset")
+    # print ("Imported mdataset")
     mdataset = DatasetProcessor("training", audio_processor, training_parameters, task = -1, device = 'cpu')
-    print ("Created mdataset")
+    # print ("Created mdataset")
     global mdataloader
-    print ("Imported mdataloader")
+    # print ("Imported mdataloader")
     mdataloader = DataLoader(mdataset, batch_size=training_parameters['batch_size'], shuffle=False, num_workers=0)
-    print ("Created mdataloader")
+    # print ("Created mdataloader")
 
     print("Data range of input data: ", torch.min(mdataset[0][0]), torch.max(mdataset[0][0]))
 
@@ -365,8 +365,8 @@ def main():
         for ctrlr in quantControllers:
             ctrlr.step_pre_validation_epoch(epochs) 
 
-    print("Clipping values:")
-    print(qnet.stem_block.conv.clipping_params)
+    # print("Clipping values:")
+    # print(qnet.stem_block.conv.clipping_params)
     
     print ("==================================== Integerize network ====================================")
 

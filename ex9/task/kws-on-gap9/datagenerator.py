@@ -51,18 +51,18 @@ class DatasetCreator(object):
             self.environment_parameters = environment_parameters
             self.training_parameters = training_parameters
             self.preprocessing_parameters = preprocessing_parameters
-            print ("set attributes")
+            # print ("set attributes")
             self.generate_background_noise()
-            print ("self.generate_background_noise")
+            # print ("self.generate_background_noise")
             if (self.training_parameters['reverb'] == "true"):
                 self.generate_reverberant_rooms()
 
             self.prepare_words_list()
-            print ("self.prepare_words_list")
+            # print ("self.prepare_words_list")
             self.generate_data_dictionary()
-            print ("self.generate_data_dictionary()")
+            # print ("self.generate_data_dictionary()")
             self.curate_words_list()
-            print ("self.curate_words_list()")
+            # print ("self.curate_words_list()")
 
     def curate_words_list(self):
 
@@ -360,7 +360,7 @@ class DatasetCreator(object):
         else:
             background_dir = os.path.join(self.environment_parameters['noise_dir_'+self.environment_parameters[noise_key]])
 
-        print (background_dir)
+        # print (background_dir)
         if not os.path.exists(background_dir):
             raise OSError("Background noise directory not found.")
 
@@ -382,7 +382,7 @@ class DatasetCreator(object):
                         if ("ch15" in str(wav_path) or "ch16" in str(wav_path)):
 
                             noise_path = str(wav_path)
-                            print (noise_path)
+                            # print (noise_path)
                             sf_loader_noise, _ = sf.read(noise_path)
                             wav_background_samples = torch.from_numpy(sf_loader_noise).float()
 
@@ -392,7 +392,7 @@ class DatasetCreator(object):
                         # if ("ch15" not in str(wav_path) and "ch16" not in str(wav_path)):
                         if ("ch01" in str(wav_path) or "ch02" in str(wav_path)):
                             noise_path = str(wav_path)
-                            print (noise_path)
+                            # print (noise_path)
                             sf_loader_noise, _ = sf.read(noise_path)
                             wav_background_samples = torch.from_numpy(sf_loader_noise).float()
                             
@@ -403,7 +403,7 @@ class DatasetCreator(object):
                     noise_path = str(wav_path)
                     sf_loader_noise, _ = sf.read(noise_path)
                     wav_background_samples = torch.from_numpy(sf_loader_noise).float()
-                    print (wav_background_samples)
+                    # print (wav_background_samples)
                     recordings.append(wav_background_samples)
                     names.append(noise_type)
 
