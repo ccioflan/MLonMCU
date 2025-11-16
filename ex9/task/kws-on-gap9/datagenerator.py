@@ -35,7 +35,7 @@ from pathlib import Path
 class DatasetCreator(object):
     
     # Prepare data
-    def __init__(self, environment_parameters, training_parameters, preprocessing_parameters):
+    def __init__(self, environment_parameters, training_parameters, preprocessing_parameters, experimental_parameters):
             self.random_seed = 59185 
 
 
@@ -389,7 +389,9 @@ class DatasetCreator(object):
                             recordings.append(wav_background_samples)
                             names.append(noise_type)
                     else:
+                        # PRETRAIN
                         # if ("ch15" not in str(wav_path) and "ch16" not in str(wav_path)):
+                        # QUANTIZE
                         if ("ch01" in str(wav_path) or "ch02" in str(wav_path)):
                             noise_path = str(wav_path)
                             # print (noise_path)

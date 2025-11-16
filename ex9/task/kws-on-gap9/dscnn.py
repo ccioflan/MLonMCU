@@ -203,7 +203,7 @@ class DSCNN(torch.nn.Module):
 
         self.fc1   = torch.nn.Linear(self.n_channels, self.n_classes, bias=self.use_bias)
 
-        self._initialize_weights(seed=42)
+        # self._initialize_weights(seed=42)
 
 
     def forward(self, x):

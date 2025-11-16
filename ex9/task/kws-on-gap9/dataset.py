@@ -306,6 +306,8 @@ class DatasetProcessor(torch.utils.data.Dataset):
             else:
                 self.background_add = self.background_add.float()
             mfcc_transformation = torchaudio.transforms.MFCC(n_mfcc=self.preprocessing_parameters['feature_bin_count'], sample_rate=self.preprocessing_parameters['desired_samples'], melkwargs=melkwargs, log_mels=True, norm='ortho')
+            mfcc_transformation = mfcc_transformation.to(self.device)
+            
             data = mfcc_transformation(self.background_add)
 
             self.data_placeholder = torch.transpose(data[:,:self.preprocessing_parameters['spectrogram_length']], 0, 1)

@@ -273,7 +273,7 @@ def main():
     
     parser = argparse.ArgumentParser()
     parser.add_argument("--net", type=str, default='DSCNN', help='Network to quantize')
-    parser.add_argument("--pretrained", type=str, default='model_int.pth', help='Path to pretrained model {model_int,model_uint}.pth.')
+    parser.add_argument("--pretrained", type=str, default='model_nlkws.pth', help='Path to pretrained model {model_nlkws,model_nakws}.pth.')
     parser.add_argument('--fix_channels', action='store_true', help='Fix channels of conv layers for compatibility with DORY')
     parser.add_argument('--no_dory_harmonize', action='store_true',
                         help='If supplied, don\'t align averagePool nodes\' associated requantization nodes and replace adders with DORYAdders')
@@ -304,7 +304,7 @@ def main():
     torch.manual_seed(0)
     np.random.seed(0)
 
-    audio_processor = DatasetCreator(environment_parameters, training_parameters, preprocessing_parameters)
+    audio_processor = DatasetCreator(environment_parameters, training_parameters, preprocessing_parameters, experimental_parameters)
     # TODO: Functional dataset management
     # print ("Created audio_processor")
     global mdataset
@@ -319,7 +319,7 @@ def main():
     print("Data range of input data: ", torch.min(mdataset[0][0]), torch.max(mdataset[0][0]))
 
     print("==================================== Loading pre-trained network ====================================")
-    pretrained = 'model_uint.pth'
+    pretrained = 'model_nlkws.pth'
     qnet = get_network(key = args['net'], exp_id=0, ckpt_id=0, quantized=True, pretrained = pretrained)
 
     print("==================================== Fake Quantizing network ====================================")
