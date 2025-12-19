@@ -216,7 +216,9 @@ class DSCNN(torch.nn.Module):
             x = self.pad_block(x)
             x = self.conv_blocks[block_idx](x)
 
+        print (x.shape)
         x = self.avg (x)
+        print (x.shape)
         x = torch.flatten(x, 1) 
         x = self.fc1 (x)
 
